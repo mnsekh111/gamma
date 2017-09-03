@@ -1,13 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <!--<img src="./assets/logo.png">-->
+    <!--<router-view></router-view>-->
+    <display></display>
   </div>
 </template>
 
 <script>
+  import Display from './components/Display.vue'
+
 export default {
-  name: 'app'
+    components: {
+      'display': Display
+    },
+    name: 'app'
 }
 </script>
 
