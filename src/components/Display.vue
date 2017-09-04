@@ -8,8 +8,7 @@
         </div>
       </v-card-title>
       <v-card-actions>
-        <v-btn flat class="orange--text">Share</v-btn>
-        <v-btn flat class="orange--text">Explore</v-btn>
+        <v-btn outline class="green--text">Save</v-btn>
       </v-card-actions>
     </v-card>
   </div>
