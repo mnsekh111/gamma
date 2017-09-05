@@ -11,6 +11,8 @@ Vue.config.productionTip = false
 Vue.use(Vuetify)
 Vue.use(VueResource)
 
+export const EventBus = new Vue()
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

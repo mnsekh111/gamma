@@ -21,6 +21,8 @@
 </template>
 
 <script>
+  import {EventBus} from '../main.js'
+
   export default {
     name: 'display',
     props: {
@@ -32,6 +34,7 @@
     methods: {
       save () {
         console.log('Saving ' + this.display.name)
+        EventBus.$emit('EventSave', this.display)
       }
     }
   }
