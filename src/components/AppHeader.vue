@@ -1,9 +1,9 @@
 <template>
-  <v-toolbar dark class="primary">
+  <v-toolbar class="primary">
     <v-toolbar-title class="white--text">{{appName}} {{appVersion}}</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-btn icon @click="refresh">
-      <v-icon>refresh</v-icon>
+      <v-icon class="white--text">refresh</v-icon>
     </v-btn>
   </v-toolbar>
 </template>

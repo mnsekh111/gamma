@@ -24,7 +24,7 @@ fs.access(saveFilePath, function (err) {
 app.use(cors())
 app.use(bodyParser.json())
 
-app.get('/display', function (req, res) {
+app.get('/displays', function (req, res) {
   info.getDisplays(function (result) {
     info.getDisplays(function (displays) {
       // console.log(displays)
@@ -33,7 +33,7 @@ app.get('/display', function (req, res) {
   })
 })
 
-app.post('/display', function (req, res) {
+app.post('/displays', function (req, res) {
   console.log(req.body)
   var data = {}
   fs.readFile(saveFilePath, 'utf8', function (err, buffer) {
