@@ -1,11 +1,17 @@
 const fs = require('fs')
+const path = require('path')
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
 const exec = require('child_process').exec
 const info = require('./xrandr-extract.js')
-const saveFilePath = '../.config/gamma_start.json'
+const saveFilePath = path.join(__dirname, '.save', 'gamma.json')
+console.log(saveFilePath)
+
+if (!fs.existsSync(path.dirname(saveFilePath))) {
+  fs.mkdirSync(path.dirname(saveFilePath));
+}
 
 fs.access(saveFilePath, function (err) {
   if (err) {
@@ -14,6 +20,7 @@ fs.access(saveFilePath, function (err) {
         console.log('OK: ' + saveFilePath + ' created')
       } else {
         console.log('ERR: ' + saveFilePath + ' cannot be created ' + err)
+        fs.mkdirSync(path.dirname(saveFilePath))
       }
     })
   } else {
@@ -45,7 +52,7 @@ app.post('/displays', function (req, res) {
       console.log(data)
       fs.writeFile(saveFilePath, JSON.stringify(data), function (err) {
         if (!err) {
-          // executeXrandr(req.body);
+          executeXrandr(req.body);
           console.log('OK: ' + saveFilePath + ' saved.')
         } else {
           console.log('ERR: ' + saveFilePath + ' cannot be saved ' + err)
