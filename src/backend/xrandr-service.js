@@ -1,32 +1,15 @@
-const fs = require('fs')
-const path = require('path')
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
 const exec = require('child_process').exec
 const info = require('./xrandr-extract.js')
-const saveFilePath = path.join(__dirname, '.save', 'gamma.json')
-console.log(saveFilePath)
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
 
-if (!fs.existsSync(path.dirname(saveFilePath))) {
-  fs.mkdirSync(path.dirname(saveFilePath));
-}
-
-fs.access(saveFilePath, function (err) {
-  if (err) {
-    fs.writeFile(saveFilePath, '{}', function (err) {
-      if (!err) {
-        console.log('OK: ' + saveFilePath + ' created')
-      } else {
-        console.log('ERR: ' + saveFilePath + ' cannot be created ' + err)
-        fs.mkdirSync(path.dirname(saveFilePath))
-      }
-    })
-  } else {
-    console.log('OK: ' + saveFilePath + ' present')
-  }
-})
+const adapter = new FileSync('gamma-save.json')
+const db = low(adapter)
+db.defaults({displays: {}})
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -42,25 +25,11 @@ app.get('/displays', function (req, res) {
 
 app.post('/displays', function (req, res) {
   console.log(req.body)
-  var data = {}
-  fs.readFile(saveFilePath, 'utf8', function (err, buffer) {
-    if (err) {
-      console.log('ERR: ' + saveFilePath + ' cannot be read')
-    } else {
-      data = JSON.parse(buffer)
-      data[req.body['name']] = req.body
-      console.log(data)
-      fs.writeFile(saveFilePath, JSON.stringify(data), function (err) {
-        if (!err) {
-          executeXrandr(req.body);
-          console.log('OK: ' + saveFilePath + ' saved.')
-        } else {
-          console.log('ERR: ' + saveFilePath + ' cannot be saved ' + err)
-        }
-      })
-      console.log('Parsed data' + data)
-    }
-  })
+  var data = req.body
+
+  db.set(`displays[${data.name}]`, data).write()
+  executeXrandr(data)
+  res.status(201).send('Saved successfully.')
 })
 
 app.listen(3000, function () {
