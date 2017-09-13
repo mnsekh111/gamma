@@ -8,9 +8,13 @@
           </div>
         </v-card-title>
         <v-card-text>
-          <v-slider label="Red" v-model="display.gamma.red" thumb-label min="10" max="100"></v-slider>
-          <v-slider label="Green" v-model="display.gamma.green" thumb-label min="10" max="100"></v-slider>
-          <v-slider label="Blue" v-model="display.gamma.blue" thumb-label min="10" max="100"></v-slider>
+          <v-layout row wrap>
+            <v-flex xs3>
+              <v-slider label="Red" v-model="display.gamma.red" thumb-label min="10" max="100"></v-slider>
+              <v-slider label="Green" v-model="display.gamma.green" thumb-label min="10" max="100"></v-slider>
+              <v-slider label="Blue" v-model="display.gamma.blue" thumb-label min="10" max="100"></v-slider>
+            </v-flex>
+          </v-layout>
         </v-card-text>
         <v-card-actions>
           <v-btn outline class="green--text" @click="save">Save</v-btn>
@@ -39,4 +43,3 @@
     }
   }
 </script>
-
