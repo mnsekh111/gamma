@@ -30,7 +30,9 @@ function getResolutions (callback) {
             displayNum++
             info[displayNames[displayNum]].supportedResolutions = []
           }
-          info[displayNames[displayNum]].supportedResolutions.push(splitArray[0])
+          if (info[displayNames[displayNum]].supportedResolutions.indexOf(splitArray[0]) === -1) {
+            info[displayNames[displayNum]].supportedResolutions.push(splitArray[0])
+          }
         } else {
           found = false
         }
