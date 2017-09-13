@@ -66,8 +66,7 @@
         copy.gamma.green = display.gamma.green
         copy.gamma.blue = display.gamma.blue
         copy.brightness = display.brightness
-        copy.resolution.width = display.resolution.width
-        copy.resolution.height = display.resolution.height
+        copy.resolution = display.resolution
         return copy
       }
     },

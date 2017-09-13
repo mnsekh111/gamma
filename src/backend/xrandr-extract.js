@@ -53,8 +53,7 @@ function getResolution (callback) {
         var splitArray = lines[i].split(' ').filter(function (data) {
           return data.length > 0
         })
-        info[displayNames[i]].resolution.width = parseInt(splitArray[0].split('x')[0])
-        info[displayNames[i]].resolution.height = parseInt(splitArray[0].split('x')[1])
+        info[displayNames[i]].resolution = splitArray[0]
       }
 
       getResolutions(callback)

@@ -75,7 +75,7 @@
                   </v-flex>
                   <v-flex xs12 sm8 md8>
                     <v-select
-                      label="Resolutions"
+                      v-model="display.resolution"
                       :items="display.supportedResolutions"
                     ></v-select>
                   </v-flex>
