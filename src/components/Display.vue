@@ -14,37 +14,37 @@
               <v-card class="pa-3 ma-3">
                 <h3 class="title">Gamma</h3>
                 <v-layout row wrap>
-                  <v-flex xs12 sm2>
+                  <v-flex xs12 sm2 md1>
                     <v-icon class="red--text">lightbulb_outline</v-icon>
                   </v-flex>
-                  <v-flex xs12 sm8>
+                  <v-flex xs12 sm8 md10>
                     <v-slider v-model="display.gamma.red" thumb-label min="10" max="100"></v-slider>
                   </v-flex>
-                  <v-flex xs12 sm2>
+                  <v-flex xs12 sm2 md1>
                     <div class="red--text body-2 text-xs-center"> ({{display.gamma.red}}) </div>
                   </v-flex>
                 </v-layout>
 
                 <v-layout row wrap>
-                  <v-flex xs12 sm2>
+                  <v-flex xs12 sm2 md1>
                     <v-icon class="green--text">lightbulb_outline</v-icon>
                   </v-flex>
-                  <v-flex xs12 sm8>
+                  <v-flex xs12 sm8 md10>
                     <v-slider v-model="display.gamma.green" thumb-label min="10" max="100"></v-slider>
                   </v-flex>
-                  <v-flex xs12 sm2>
+                  <v-flex xs12 sm2 md1>
                     <div class="green--text body-2 text-xs-center"> ({{display.gamma.green}}) </div>
                   </v-flex>
                 </v-layout>
 
                 <v-layout row wrap>
-                  <v-flex xs12 sm2>
+                  <v-flex xs12 sm2 md1>
                     <v-icon class="blue--text">lightbulb_outline</v-icon>
                   </v-flex>
-                  <v-flex xs12 sm8>
+                  <v-flex xs12 sm8 md10>
                     <v-slider v-model="display.gamma.blue" thumb-label min="10" max="100"></v-slider>
                   </v-flex>
-                  <v-flex xs12 sm2>
+                  <v-flex xs12 sm2 md1>
                     <div class="blue--text body-2 text-xs-center"> ({{display.gamma.blue}}) </div>
                   </v-flex>
                 </v-layout>
@@ -53,14 +53,31 @@
               <v-card class="pa-3 ma-3">
                 <h3 class="title">Brightness</h3>
                 <v-layout row wrap>
-                  <v-flex xs12 sm2>
+                  <v-flex xs12 sm2 md1>
                     <v-icon>brightness_7</v-icon>
                   </v-flex>
-                  <v-flex xs12 sm8>
+                  <v-flex xs12 sm8 md10>
                     <v-slider v-model="display.brightness" thumb-label min="10" max="100"></v-slider>
                   </v-flex>
-                  <v-flex xs12 sm2>
+                  <v-flex xs12 sm2 md1>
                     <div class="blue--text body-2 text-xs-center"> ({{display.brightness}}) </div>
+                  </v-flex>
+                </v-layout>
+              </v-card>
+            </v-flex>
+
+            <v-flex xs12 sm6>
+              <v-card class="pa-3 ma-3">
+                <h3 class="title">Resolutions</h3>
+                <v-layout row wrap>
+                  <v-flex xs12 sm4 md4>
+                    <v-icon>brightness_7</v-icon>
+                  </v-flex>
+                  <v-flex xs12 sm8 md8>
+                    <v-select
+                      label="Resolutions"
+                      :items="display.supportedResolutions"
+                    ></v-select>
                   </v-flex>
                 </v-layout>
               </v-card>

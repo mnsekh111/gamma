@@ -7,7 +7,37 @@ function Display () {
   this.brightness = 0
   this.gamma = {}
   this.resolution = {}
+  this.supportedResolutions = []
   this.name = 'unknown'
+}
+
+function getResolutions (callback) {
+  exec('xrandr --verbose | grep \'[0-9]x[0-9]\'', function (err, stdout, stderr) {
+    if (err) {
+      console.log('error writing xrandr-output')
+      callback({})
+    } else {
+      var lines = stdout.split('\n')
+      var displayNum = -1
+      var found = false
+      for (let i = 0; i < lines.length; i++) {
+        var splitArray = lines[i].split(' ').filter(function (data) {
+          return data.length > 0
+        })
+        if (splitArray.length > 0 && splitArray[0].split('x').length === 2) {
+          if (found === false) {
+            found = true
+            displayNum++
+            info[displayNames[displayNum]].supportedResolutions = []
+          }
+          info[displayNames[displayNum]].supportedResolutions.push(splitArray[0])
+        } else {
+          found = false
+        }
+      }
+      callback(info)
+    }
+  })
 }
 
 function getResolution (callback) {
@@ -25,7 +55,7 @@ function getResolution (callback) {
         info[displayNames[i]].resolution.height = parseInt(splitArray[0].split('x')[1])
       }
 
-      callback(info)
+      getResolutions(callback)
     }
   })
 }
