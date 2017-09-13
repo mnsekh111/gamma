@@ -49,6 +49,21 @@
                   </v-flex>
                 </v-layout>
               </v-card>
+
+              <v-card class="pa-3 ma-3">
+                <h3 class="title">Brightness</h3>
+                <v-layout row wrap>
+                  <v-flex xs12 sm2>
+                    <v-icon>brightness_7</v-icon>
+                  </v-flex>
+                  <v-flex xs12 sm8>
+                    <v-slider v-model="display.brightness" thumb-label min="10" max="100"></v-slider>
+                  </v-flex>
+                  <v-flex xs12 sm2>
+                    <div class="blue--text body-2 text-xs-center"> ({{display.brightness}}) </div>
+                  </v-flex>
+                </v-layout>
+              </v-card>
             </v-flex>
           </v-layout>
         </v-card-text>
